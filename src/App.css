@@ -1,0 +1,384 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Top bar ---- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(16, 24, 40, 0.7);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brand-text h1 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+.brand-text p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.filter-field label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+}
+
+.filter-field select,
+.filter-field input {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 12.5px;
+  font-family: var(--font-body);
+  min-width: 130px;
+}
+
+.reset-btn {
+  align-self: flex-end;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  padding: 7px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.reset-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---- Main layout ---- */
+.main-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.9fr);
+  gap: 18px;
+  padding: 18px 28px 28px;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 1080px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.panel-header h2 {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.panel-header .eyebrow {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+}
+
+/* ---- Executive summary ---- */
+.exec-summary p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin: 0;
+}
+.exec-summary .loading-line {
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+/* ---- KPI cards ---- */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.kpi-card {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 13px 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card .kpi-label {
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.kpi-card .kpi-value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.kpi-card .kpi-value.accent { color: var(--accent); }
+.kpi-card .kpi-value.good { color: var(--data-high); }
+.kpi-card .kpi-value.bad { color: var(--data-low); }
+
+/* Signal bars: telecom-style utilization indicator */
+.signal-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 16px;
+  margin-left: 8px;
+}
+.signal-bars .bar {
+  width: 4px;
+  border-radius: 1px;
+  background: var(--border-subtle);
+}
+.signal-bars .bar.filled {
+  background: var(--bar-color, var(--accent));
+}
+.signal-bars .bar:nth-child(1) { height: 30%; }
+.signal-bars .bar:nth-child(2) { height: 50%; }
+.signal-bars .bar:nth-child(3) { height: 70%; }
+.signal-bars .bar:nth-child(4) { height: 85%; }
+.signal-bars .bar:nth-child(5) { height: 100%; }
+
+/* ---- Map ---- */
+.map-panel {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Leaflet's internal panes/popups use high z-index values (up to ~700).
+     `isolation: isolate` creates a new stacking context so those values are
+     only compared against each other inside this panel, and can never climb
+     above page-level elements like the sticky top bar. */
+  position: relative;
+  isolation: isolate;
+}
+.map-panel .panel-header {
+  padding: 16px 20px 0;
+  margin-bottom: 10px;
+}
+.map-container {
+  flex: 1;
+  min-height: 460px;
+  position: relative;
+}
+.leaflet-container {
+  background: #0d1526;
+  height: 100%;
+  width: 100%;
+  font-family: var(--font-body);
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 400;
+  background: rgba(16, 24, 40, 0.9);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  backdrop-filter: blur(6px);
+}
+.map-legend .legend-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.map-legend .swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.layer-toggles {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 400;
+  background: rgba(16, 24, 40, 0.9);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 11.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  backdrop-filter: blur(6px);
+  min-width: 165px;
+}
+.layer-toggles label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+.layer-toggles input {
+  accent-color: var(--accent);
+}
+
+.muni-popup {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  min-width: 190px;
+}
+.muni-popup h3 {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  margin: 0 0 6px;
+}
+.muni-popup .row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  color: var(--text-secondary);
+}
+.muni-popup .row b {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+/* ---- Charts ---- */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+@media (max-width: 1400px) {
+  .charts-grid { grid-template-columns: 1fr; }
+}
+.chart-card h3 {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Insights ---- */
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  max-height: 340px;
+  overflow-y: auto;
+}
+.insight-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-panel-raised);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--tag-color, var(--accent));
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+.insight-item .tag {
+  flex-shrink: 0;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--tag-color, var(--accent));
+  font-weight: 600;
+  padding-top: 1px;
+  white-space: nowrap;
+}
+
+.empty-state, .loading-state, .error-state {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+.error-state {
+  color: var(--data-low);
+}

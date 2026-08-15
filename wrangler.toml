@@ -1,0 +1,8 @@
+name = "globe-bulacan-dashboard"
+compatibility_date = "2025-01-01"
+
+# This tells Wrangler "this is a static site" (the built output of `npm run build`),
+# not a server-side Worker script. Without this, `npx wrangler deploy` will fail
+# looking for a `main` JS entry point that doesn't exist in this project.
+[assets]
+directory = "./dist"
